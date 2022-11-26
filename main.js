@@ -103,3 +103,33 @@ function ajax(keyword) {  //AJAX request
         }
     });
 }
+
+function displayData(response) {
+
+    for (var i = 0; i <= 0; i++) {
+        $(".display-results").append("<div class='card mb-4 c-" + i + "'>"
+            + "<div class='card-body cb-" + i + "'>"
+            + "<h5 class='title title-" + i + "'></h5>"
+            + "<br>"
+            + "<p class='snippet snippet-" + i + "'></p>"
+            + "<br>"
+            + "<p class='metadata metadata-" + i + "'></p>"
+            + "</div>"
+            + "<p></p>");
+    }
+
+    for (var m = 0; m <= 0; m++) {
+        var title = response.query.search[m].title;
+        var url = title.replace(/ /g, "_");
+        var timestamp = response.query.search[m].timestamp;
+        timestamp = new Date(timestamp); 
+
+        $(".title-" + m).html("<a href='https://en.wikipedia.org/wiki/" + url + "' target='_blank'>" + response.query.search[m].title + "</a>");
+
+        $(".snippet-" + m).html(response.query.search[m].snippet);
+
+        $(".metadata-" + m).html((response.query.search[m].size / 1000).toFixed(0) + "kb (" +
+
+            response.query.search[m].wordcount + " words) - " + timestamp);
+    }
+}
