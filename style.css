@@ -19,3 +19,28 @@
     position: relative;
     right: 220px;
   }
+
+  .container {
+    height: 50%;
+    width: 50%;
+    display: flex;
+    /* background-color: red; */
+    position: absolute;
+    padding: 50px;
+    right: 50px;
+  }
+
+  .display-results{
+    /* background-color: blue; */
+    position: relative;
+    height: 10px;
+    margin-top: 20px;
+  }
+
+  .search{
+    width: 900px;
+  }
+  .names{
+    margin-top: 20px;
+    text-align: center;
+  }
