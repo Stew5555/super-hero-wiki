@@ -81,3 +81,25 @@ function loadDetails(heroid) {
         })
         .catch((error) => console.log(error));
 }
+
+function ajax(keyword) {  //AJAX request
+
+    $.ajax({
+        url: "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + keyword + "&prop=info&inprop=url&utf8=&format=json",
+        dataType: "jsonp",
+
+        success: function (responses) {
+            //console.log(response.query);
+
+            if (responses.query.searchinfo.totalhits === 0) {
+                alert(keyword + "NO RESULTS FOUND");
+            }
+            else {
+                displayData(responses);
+            }
+        },
+        error: function () {
+            alert("Error retrieving search results, please refresh the page");
+        }
+    });
+}
