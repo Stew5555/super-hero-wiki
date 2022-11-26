@@ -26,3 +26,38 @@ search.addEventListener('keydown', (e) => {
     }
 
 });
+
+searchkey.onkeyup = function () {
+    var searchname = searchkey.value;
+    if (searchname !== "") {
+        fetch(
+            `https://superheroapi.com/api.php/3328323083897178/search/` + searchname.trim()
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                function showhero() {
+                    var heronames = data.results;
+                    console.log(data.results);
+                    ul.innerText = " ";
+                    for (var i of heronames) {
+                        var li = document.createElement("li");
+                        li.innerHTML = i.name;
+                        li.id = i.id;
+
+                        li.addEventListener("click", function () {
+                            heroid = this.id;
+                            console.log(heroid + "this is id");
+                            loadDetails(heroid);
+                            ul.innerText = " ";
+                        });
+                        li.setAttribute("style", "display: block;");
+                        ul.appendChild(li);
+                    }
+                }
+
+                showhero();
+            })
+            .catch((err) => console.log(err));
+    }
+}
