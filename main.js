@@ -61,3 +61,23 @@ searchkey.onkeyup = function () {
             .catch((err) => console.log(err));
     }
 }
+
+// displaying the hero details on screen 
+function loadDetails(heroid) {
+    fetch(`https://superheroapi.com/api.php/ 3328323083897178/${heroid}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+
+            // var details = document.getElementById('details');
+            // details.setAttribute("style","background-color:rgba(0,0,0,0.8);")
+
+            var img = document.getElementById("img");
+            img.setAttribute("src", data.image.url);
+
+            var name = document.getElementById("name");
+            name.innerHTML = data.name;
+
+        })
+        .catch((error) => console.log(error));
+}
